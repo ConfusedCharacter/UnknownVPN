@@ -1,4 +1,4 @@
-# UnknownVPN v1.0.0
+# UnknownVPN
 
 ![alt](https://raw.githubusercontent.com/ConfusedCharacter/UnknownVPN/main/pic.png)
 
