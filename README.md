@@ -3,6 +3,7 @@
 ![alt](https://raw.githubusercontent.com/ConfusedCharacter/UnknownVPN/main/pic.png)
 
 Simple Library for [UnknownVPN](https://t.me/Unknown_Vpn) [Robot](https://t.me/Unknownvpnbot) API documentation.
+* You can check Example.py on github to see examples.
 
 # installation
 ```bash
