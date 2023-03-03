@@ -27,5 +27,5 @@ data.services_count
 data.username
 ```
 
-### Created By ConfusedCharacter
+### Created By [ConfusedCharacter](https://github.com/ConfusedCharacter)
 ### Good Luck!
