@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 # =================================================== 
-# UnknownVPN Library v1.0.0
+# UnknownVPN Library v1.0.1
 #
 # Telegram Channel: Unknown_Vpn.t.me
 #                                                     
-# Github: 
+# Github: https://github.com/ConfusedCharacter/UnknownVPN/
 #                                                     
 # Documentation: https://documenter.getpostman.com/view/25344905/2s8ZDSdR3q#6ad6d4a1-ba9c-4169-a8d1-5a31e9ea6a95
 #
@@ -18,7 +18,6 @@
 import requests
 import UnknownVPN.config as config
 from UnknownVPN.structs import AccountDetails,GetServiceLicense,ChangeLicense,BuyService,GetInfo,GetLinks
-from collections import namedtuple
 
 
 class UserAccount:
@@ -199,6 +198,24 @@ class UserAccount:
         else:
             raise Exception(response['message'])
 
+    def ChangeName(self,service_id:str) -> bool:
+        """
+        Chanage service name by service_id
+
+        Output Data (boolean):
+            True,False
+        """
+
+        response = self.session.post(config.CHANGENAME_URL,json={
+            "service_id":service_id
+        })
+        response = response.json()
+        if response['status']:
+            return True
+        elif not response['status'] and "invalid" in response['message']:
+            raise ValueError(response['message'] + " sent to server.")
+        else:
+            raise Exception(response['message'])
 
 class ManageServices:
 
@@ -249,7 +266,7 @@ class ManageServices:
         response = response.json()
         if response['status']:
             response = response['service']
-            return GetInfo( response['createdTime'],
+            return GetInfo( createdTime = response['createdTime'],
                             enabled = response['enabled'],
                             expired = response['expired'],
                             expiryTime = response['expiryTime'],
