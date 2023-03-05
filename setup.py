@@ -2,7 +2,7 @@ from setuptools import setup,find_packages
 
 setup(
     name = "UnknownVPN",
-    version = "1.0.0",
+    version = "1.0.2",
     description = "Simple Library for UnknownVPN Robot API documentation.",
     author = "Confused Character",
     packages = find_packages(),
