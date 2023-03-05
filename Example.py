@@ -38,6 +38,7 @@ data = client.BuyService('xxxxxxxxxx',1,50,1)
 data.license
 data.service_id
 
+client.ChangeName('xxxxxxxxxxxx','ThisIsTest-Name')
 
 client = UnknownVPN.ManageServices("xxxxxxxxxxxxx")
 
