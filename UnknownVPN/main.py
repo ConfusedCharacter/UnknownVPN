@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # =================================================== 
-# UnknownVPN Library v1.0.1
+# UnknownVPN Library v1.0.2
 #
 # Telegram Channel: Unknown_Vpn.t.me
 #                                                     
@@ -198,7 +198,7 @@ class UserAccount:
         else:
             raise Exception(response['message'])
 
-    def ChangeName(self,service_id:str) -> bool:
+    def ChangeName(self,service_id:str,name:str) -> bool:
         """
         Chanage service name by service_id
 
@@ -207,7 +207,8 @@ class UserAccount:
         """
 
         response = self.session.post(config.CHANGENAME_URL,json={
-            "service_id":service_id
+            "service_id":service_id,
+            "name": name
         })
         response = response.json()
         if response['status']:
