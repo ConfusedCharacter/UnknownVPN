@@ -26,19 +26,27 @@ data = client.GetServiceLicense('xxxxxxxxxx')
 data.license
 data.service_id
 
-
 # Change Service License
 data = client.ChangeLicense('xxxxxxxxxx')
 data.license
 data.service_id
-
 
 # Buy Service
 data = client.BuyService('xxxxxxxxxx',1,50,1)
 data.license
 data.service_id
 
+# Change Service Name
 client.ChangeName('xxxxxxxxxxxx','ThisIsTest-Name')
+
+# Buy More Traffic
+client.BuyMoreTraffic("xxxxxxxx",300)
+
+# Buy More User
+client.BuyMoreUser("xxxxxxxxx",3)
+
+# ReNew Service
+client.ReNewService("xxxxxxxxxxx")
 
 client = UnknownVPN.ManageServices("xxxxxxxxxxxxx")
 
@@ -68,3 +76,7 @@ ips = client.GetConnections()
 
 # Change Location
 result = client.ChangeLocation("j5aRq3")
+
+# Auto Pay Service
+client.AutoPay(status=True)
+client.AutoPay(status=False)
