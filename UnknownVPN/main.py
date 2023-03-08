@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # =================================================== 
-# UnknownVPN Library v1.0.2
+# UnknownVPN Library v1.0.3
 #
 # Telegram Channel: Unknown_Vpn.t.me
 #                                                     
@@ -218,6 +218,72 @@ class UserAccount:
         else:
             raise Exception(response['message'])
 
+    def BuyMoreUser(self,service_id:str,count:int):
+        """
+        Buy more user with service_id
+        You can get price of extra user in /getprices in extra_user field.
+        count_users should be integer and between 1 - 10.
+        If buy will successfull response will return the current extra user count in user_plus field.
+        Rate limit : 1 / 30 seconds
+        Output Data (boolean):
+            True,False
+        """
+        if abs(count) > 10:
+            raise ValueError("Invalid Count. count should be integer and between 1 - 10.")
+
+        response = self.session.post(config.BUYMOREUSER_URL,json={
+            "service_id":service_id,
+            "count_users": abs(count)
+        })
+        response = response.json()
+        if response['status']:
+            return True
+        elif not response['status'] and "invalid" in response['message']:
+            raise ValueError(response['message'] + " sent to server.")
+        else:
+            raise Exception(response['message'])
+    
+    def BuyMoreTraffic(self,service_id:str,size:int):
+        """
+        Buy more traffic with service_id
+        You can get price of extra size (GB) in /getprices in extra_size field.
+        size should be integer and between 1 - 600.
+        Rate limit : 1 / 30 seconds
+        """
+        if abs(size) > 600:
+            raise ValueError("Invalid Count. size should be integer and between 1 - 600.")
+
+        response = self.session.post(config.BUYMORETRAFFIC_URL,json={
+            "service_id":service_id,
+            "size": size
+        })
+        response = response.json()
+        if response['status']:
+            return True
+        elif not response['status'] and "invalid" in response['message']:
+            raise ValueError(response['message'] + " sent to server.")
+        else:
+            raise Exception(response['message'])
+
+    def ReNewService(self,service_id:str):
+        """
+        Extension service with service_id
+        You can get price of current service plain with/getprices.
+        If only 5 days left of service expiryTime OR 85% of service size is used service can be extended.
+        You can see if service extendable in not in /getinfo at extendable field.
+        Rate limit : 1 / 30 seconds
+        """
+        response = self.session.post(config.RENEWSERVICE_URL,json={
+            "service_id":service_id,
+        })
+        response = response.json()
+        if response['status']:
+            return True
+        elif not response['status'] and "invalid" in response['message']:
+            raise ValueError(response['message'] + " sent to server.")
+        else:
+            raise Exception(response['message'])
+
 class ManageServices:
 
     def __init__(self,service_license : str) -> None:
@@ -395,6 +461,22 @@ class ManageServices:
         """
         response = self.session.post(config.CHANGELOCATION_URL,json={
             "server_id":server_id
+        })
+        response = response.json()
+        if response['status']:
+            return True
+        elif not response['status'] and "invalid" in response['message']:
+            raise ValueError(response['message'] + " sent to server.")
+        else:
+            raise Exception(response['message'])
+
+    def AutoPay(self,status:bool):
+        """
+        Change auto pay of service.
+        Rate limit : 1 / 15 seconds
+        """
+        response = self.session.post(config.AUTOPAY_URL,json={
+            "autopay":status
         })
         response = response.json()
         if response['status']:
