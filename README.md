@@ -10,6 +10,16 @@ Simple Library for [UnknownVPN](https://t.me/Unknown_Vpn) [Robot](https://t.me/U
 $ pip3 install UnknownVPN
 ```
 
+# Upgrade 
+```bash
+$ pip3 install UnknownVPN --upgrade
+```
+or
+
+```bash
+$ pip3 install UnknownVPN==1.0.3
+```
+
 # Usage
 
 ```python3
